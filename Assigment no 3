@@ -28,6 +28,7 @@ class Employee {
         double grossSalary = basicPay + da + hra;
         double netSalary = grossSalary - pf - staffClubFund;
 
+        System.out.println("\n----- Pay Slip -----");
         System.out.println("Basic Pay: " + basicPay);
         System.out.println("Dearness Allowance (97% of BP): " + da);
         System.out.println("House Rent Allowance (10% of BP): " + hra);
@@ -66,66 +67,26 @@ class ProjectManager extends Employee {
     }
 }
 
-// Main class to test the functionality
-public class EmployeeInheritance {
+// Main class to demonstrate functionality
+public class Main {
     public static void main(String[] args) {
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        Programmer programmer = new Programmer("John Doe", "P001", "123 Programmer St", "john.doe@example.com", "9876543210", 35000);
+        TeamLead teamLead = new TeamLead("Jane Smith", "T001", "456 TeamLead Ave", "jane.smith@example.com", "8765432109", 45000);
+        AssistantProjectManager apm = new AssistantProjectManager("Alice Brown", "A001", "789 Assistant Rd", "alice.brown@example.com", "7654321098", 55000);
+        ProjectManager pm = new ProjectManager("Bob White", "M001", "101 Manager Blvd", "bob.white@example.com", "6543210987", 65000);
 
-        System.out.println("Enter Employee Details:");
+        // Display details and pay slips
+        programmer.displayDetails();
+        programmer.generatePaySlip();
 
-        System.out.print("Enter Name: ");
-        String name = scanner.nextLine();
+        teamLead.displayDetails();
+        teamLead.generatePaySlip();
 
-        System.out.print("Enter Employee ID: ");
-        String empId = scanner.nextLine();
+        apm.displayDetails();
+        apm.generatePaySlip();
 
-        System.out.print("Enter Address: ");
-        String address = scanner.nextLine();
-
-        System.out.print("Enter Mail ID: ");
-        String mailId = scanner.nextLine();
-
-        System.out.print("Enter Mobile Number: ");
-        String mobileNo = scanner.nextLine();
-
-        System.out.print("Enter Basic Pay: ");
-        double basicPay = scanner.nextDouble();
-
-        System.out.println("\nSelect Employee Type:");
-        System.out.println("1. Programmer");
-        System.out.println("2. Team Lead");
-        System.out.println("3. Assistant Project Manager");
-        System.out.println("4. Project Manager");
-        System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
-
-        Employee employee = null;
-
-        switch (choice) {
-            case 1:
-                employee = new Programmer(name, empId, address, mailId, mobileNo, basicPay);
-                break;
-            case 2:
-                employee = new TeamLead(name, empId, address, mailId, mobileNo, basicPay);
-                break;
-            case 3:
-                employee = new AssistantProjectManager(name, empId, address, mailId, mobileNo, basicPay);
-                break;
-            case 4:
-                employee = new ProjectManager(name, empId, address, mailId, mobileNo, basicPay);
-                break;
-            default:
-                System.out.println("Invalid choice!");
-                scanner.close();
-                return;
-        }
-
-        System.out.println("\nEmployee Details:");
-        employee.displayDetails();
-
-        System.out.println("\nPay Slip:");
-        employee.generatePaySlip();
-
-        scanner.close();
+        pm.displayDetails();
+        pm.generatePaySlip();
     }
 }
+
