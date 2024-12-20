@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class ExceptionHandlingDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int num1 = 0, num2 = 0;
+
+        try {
+            // Input two numbers
+            System.out.print("Enter first number (Num1): ");
+            num1 = Integer.parseInt(scanner.nextLine()); // May throw NumberFormatException
+
+            System.out.print("Enter second number (Num2): ");
+            num2 = Integer.parseInt(scanner.nextLine()); // May throw NumberFormatException
+
+            // Perform division
+            int result = num1 / num2; // May throw ArithmeticException
+            System.out.println("The result of division is: " + result);
+
+            // Array index example
+            int[] arr = {10, 20, 30};
+            System.out.println("Accessing array element at index 3 (invalid): " + arr[3]); // May throw ArrayIndexOutOfBoundsException
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException: Division by zero is not allowed.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ArrayIndexOutOfBoundsException: Invalid array index accessed.");
+        } catch (NumberFormatException e) {
+            System.out.println("NumberFormatException: Please enter valid integers.");
+        } finally {
+            System.out.println("Execution completed.");
+            scanner.close();
+        }
+    }
+}
